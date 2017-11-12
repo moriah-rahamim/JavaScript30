@@ -46,6 +46,6 @@ kbd {
 
 .playing {
 	transform: scale(1.1);
-	border-color: rgba(255,198,0,1);
+	border-color: rgba(75, 164, 237, 1);
 	box-shadow: 0 0 1rem #ffc600;
 }
