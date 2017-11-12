@@ -75,11 +75,34 @@
 	<!-- K: tom -->		<audio data-key="75" src="sounds/tom.wav"></audio>
 	<!-- L: tink -->	<audio data-key="76" src="sounds/tink.wav"></audio>
 
-
 <script>
-	window.addEventListener('keydown', function(event){
-		console.log(event);
+
+	// Play audio and animate visual for the specified event (a keystroke)
+	function playKey(event) {
+
+		// Play audio associated with this key
+		let audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+		if (!audio) return; // stop if there's nothing to do for this key
+		audio.currentTime = 0;
+		audio.play();
+
+		// Add animation for the key displayed in the window
+		let key = document.querySelector(`div.key[data-key="${event.keyCode}"]`);
+		key.classList.add('playing');
+	}
+
+	// Always transition keys back to their original state after they're done animating
+	function removeTransition (event) {
+		if (event.propertyName !== 'transform') return; // only use 'transform' event
+		event.target.classList.remove('playing');
+	}
+	const keys = document.querySelectorAll('.key'); // Grab all the keys
+	keys.forEach(function(key){ // Add an event listener to each key to un-transition at the end of an animation
+		key.addEventListener('transitionend', removeTransition);
 	});
+
+	// When user hits a key, do all the things! play the sound and animate the visual
+	window.addEventListener('keydown', playKey);
 </script>	
 </body>
 </html>
