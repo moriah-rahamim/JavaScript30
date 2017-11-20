@@ -22,6 +22,25 @@
 
 	<style>
 
+		/*Declare and instantiate variables in root so they are accessible everywhere*/
+		:root {
+			--base-color: #ffc600;
+			--spacing: 10px;
+			--blur: 10px;
+		}
+
+		img {
+			padding: var(--spacing);
+			background: var(--base-color);
+			filter: blur(var(--blur));
+		}
+
+		.highlight {
+			color: var(--base-color);
+		}
+
+
+
 		/*Misc styles, nothing to do with CSS variables*/
 		body {
 			text-align: center;
